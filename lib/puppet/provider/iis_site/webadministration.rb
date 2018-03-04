@@ -190,4 +190,11 @@ Puppet::Type.type(:iis_site).provide(:webadministration, parent: Puppet::Provide
       return binding['bindinginformation'].match(/:([0-9]*):/).captures.first
     end
   end
+
+  def host_header
+    if @resource[:bindings]
+      binding = @resource[:bindings].first
+      return binding[‘bindinginformation’].match(/:[0-9]*:([a-zA-Z0-9.]*)/).captures.first
+    end
+  end
 end

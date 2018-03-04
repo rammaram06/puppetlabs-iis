@@ -12,6 +12,9 @@ $createParams = @{
   Force           = $true
   ErrorAction     = 'Stop'
 <%= "port            = #{resource.provider.binding_port}" unless resource.provider.binding_port.nil? %>
+<% unless resource.provider.host_header.nil? %>
+  hostheader  =  '<%= "#{resource.provider.host_header}" %>'
+<% end %>
 }
 
 # If there are no other websites, specify the Id, otherwise an Index Out of Range error can be thrown
